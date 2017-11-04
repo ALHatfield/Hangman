@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ALHatfield/Hangman/issues"
   },
-  "homepage": "https://github.com/ALHatfield/Hangman#readme"
+  "homepage": "https://github.com/ALHatfield/Hangman#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0"
+  }
 }

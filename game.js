@@ -1,32 +1,31 @@
 const inquirer = require('inquirer');
 
+const wordlist = [
+    "dog",
+    "cat",
+    "mouse",
+    "zebra",
+    "lion"
+]
 
+function Word(word) {
+    // console.log("New word: " + word);    
+    this.letters = word.split("");
+}
 
 
 
 function start() {
     
-    // Set starting conditions in a function
-        // Reset the guess count
-        // Select next word 
+    function nextWord() {
+        var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+        this.currentWord = new Word(randomWord);
+        console.log(this.currentWord);
 
-    // Function that determines new word
-
-    // Function that 
-    
-
-}
-
-
-var Word = function(word) {
-    this.letters = [];
-    this.word = word;
-    this.addLetter = function(l) {
-        this.letters.push(new Letter(l));
     }
+
+    nextWord();   
 }
 
+start();
 
-var Letter = function(letter) {
-    this.letter = letter;
-}
