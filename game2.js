@@ -1,48 +1,54 @@
 const inquirer = require('inquirer');
 
-const wordlist = ["dog", "cat", "mouse", "zebra", "lion"]
+const wordlist = [
+    "dog",
+    "cat",
+    "mouse",
+    "zebra",
+    "lion"
+]
 
+// START THE GAME
+Game();
+
+// GAME FUNCTION
 function Game() {
-
-    // Sets the guesses to 10 and gets the next word
-    this.play = function() {
-        // Reset the guesses left and calls next word
+    function startNewGame() {
+        console.log("Guess the word!");
+        this.guessesLeft = 10;
+        nextWord();
     }
-
-    // Creates a new Word object using a random word from the array, asks the user for their guess
-    this.nextWord = function() {
-
+    function nextWord() {
+        var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+        console.log('randomWord === ' + randomWord);
+        this.currentWord = new Word(randomWord);
+        // console.log('currentWord === ' + this.currentWord);
     }
+    startNewGame();
+}
+// ================================
 
-    // Uses inquirer to prompt the user for their guess
-    this.makeGuess = function() {
-        // Ask for letter
-    }
-
-    // Asks the user if they want to play again after running out of guessesLeft
-    this.askToPlayAgain = function() {
-
-    }
-
-    // Prompts the user for a letter
-    this.askForLetter = function() {
-        return inquirer.prompt([
-            {
-                type: "input",
-                name: "choice",
-                message: "Guess a letter!"
-            }
-        ])
-        .then(function(val) {
-            
+function Word(word) {
+    this.letters = word.split('').map(function(char) {
+        return new Letter(char);
+    });
+    this.displayLetters = function() {
+        return this.letters.map(function(letter) {
+            return letter.hideLetter();
         })
     }
+    console.log(this.displayLetters());
+    // console.log(this.letters[0].char);
+}
 
-  // Logs goodbye and exits the node app
-    this.quit = function() {
-        console.log("\nGoodbye!");
-        process.exit(0);
-    };
-
-
+function Letter(char) {
+    this.char = char;
+    this.discovered = false;
+    this.hideLetter = function() {
+        if(this.discovered === false) {
+            return "_";
+        } else {
+            return this.char;
+        }
+    }
 }

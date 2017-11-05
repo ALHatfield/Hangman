@@ -30,14 +30,17 @@ function Word(word) {
         return new Letter(char);
     }),
     this.displayHidden = function() {
-        // return this.letters.length;
-        for(let i = 0; i < this.letters.length; i++) {
-            // console.log(this.letters[i].hideLetter);
-            return this.letters[i].hideLetter();
-        }
-    },
-    this.toString = function() {
-        return this.letters.join(' ');
+        console.log(this.letters);
+        
+        // console.log(this.letters.map(function(char) {
+        //     console.log("hi");
+        // }));
+        // this.letters.map(hideLetter(char));
+
+        // for(let i = 0; i < this.letters.length; i++) {
+        //     // console.log(this.letters[i].hideLetter);
+        //     return this.letters[i].hideLetter();
+        // }
     }
 }
 
@@ -52,9 +55,13 @@ function start() {
     
     function nextWord() {
         var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+
+        // randomWord = randomWord.toString();
+        // console.log("randomWord === " + randomWord);
         this.currentWord = new Word(randomWord);
         // console.log(this.currentWord.displayHidden());
-        return this.currentWord.displayHidden();
+        // return this.currentWord.displayHidden();
+        return console.log(this.currentWord.displayHidden());
     }
 
     startNewGame();
