@@ -15,16 +15,16 @@ Game();
 
 // GAME FUNCTION
 function Game() {
-
-
+    
     console.log("\nGuess the word!");
     this.guessesLeft = 10;
-
     var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
-    var randomWordTwo = "second argument";
     // console.log('randomWord === ' + randomWord);
+    // console.log(typeof(randomWord));
     this.currentWord = new Word(randomWord);
-    // console.log('currentWord === ' + this.currentWord);
+    // console.log('this.currentWord === ' + this.currentWord);
+    // console.log('typeof(this.currentWord) === ' + typeof(this.currentWord));
+
 
     // ========= INQUIRER ===============
     //
@@ -40,6 +40,7 @@ function Game() {
     // }
     // console.log(solve(this.currentWord.letters[0].item));
 }
+
 // ====================================================================================
 
 
