@@ -16,36 +16,29 @@ Game();
 // GAME FUNCTION
 function Game() {
 
-    startNewGame();
 
-    function startNewGame() {
-        console.log("\nGuess the word!");
-        this.guessesLeft = 10;
-        nextWord();
+    console.log("\nGuess the word!");
+    this.guessesLeft = 10;
 
-    }
+    var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+    var randomWordTwo = "second argument";
+    // console.log('randomWord === ' + randomWord);
+    this.currentWord = new Word(randomWord);
+    // console.log('currentWord === ' + this.currentWord);
 
-    function nextWord() {
-        var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
-        var randomWordTwo = "second argument";
-        // console.log('randomWord === ' + randomWord);
-        this.currentWord = new Word(randomWord);
-        // console.log('currentWord === ' + this.currentWord);
-
-        // ========= INQUIRER ===============
-        //
-        // get INPUT and check if INPUT === currentWord.letters[].item
-        //
-        //
-        // this.solve = function(x) {
-        //     if(x === "c") {
-        //         console.log("foo");
-        //     } else {
-        //         console.log("bar")
-        //     }
-        // }
-        // console.log(solve(this.currentWord.letters[0].item));
-    }
+    // ========= INQUIRER ===============
+    //
+    // get INPUT and check if INPUT === currentWord.letters[].item
+    //
+    //
+    // this.solve = function(x) {
+    //     if(x === "c") {
+    //         console.log("foo");
+    //     } else {
+    //         console.log("bar")
+    //     }
+    // }
+    // console.log(solve(this.currentWord.letters[0].item));
 }
 // ====================================================================================
 
