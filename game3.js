@@ -22,6 +22,7 @@ function Game() {
         // console.log('currentWordObject characters : ' + currentWordObject.letters.map(item => item.character).join(' '));  // d o g
         
         displayWord(currentWordObject);            // [{d},{o},{g}]
+        makeGuess(currentWordObject);             // makeGuess([{d},{o},{g}])
     }
 
     function displayWord(wordObject) {
@@ -29,21 +30,19 @@ function Game() {
         // console.log('currentWordObject characters : ' + wordObject.letters.map(item => item.character).join(" "));  // d o g
         console.log('currentWordObject displayLetter : ' + wordObject.letters.map(item => item.displayLetter()).join(" "));  // _ _ _
         
-
-        // makeGuess(wordObject);             // makeGuess([{d},{o},{g}])
     }
 
     function makeGuess(wordObject) {
         console.log("\nmakeGuess()")
         // console.log(wordObject);         // console.log([{d},{o},{g}])
+
         askForLetter(wordObject);           // askForLetter([{d},{o},{g}])
-        // .then ...
-        // You got it right!
-        // You got it wrong!
     }
 
     function askForLetter(wordObject) {
-        console.log('\naskForLetter()')
+        console.log('\naskForLetter()');
+        // console.log("WordObject: " + JSON.stringify(wordObject));        // console.log([{d},{o},{g}])
+        
         // inquirer input
         return inquirer.prompt([
             {
@@ -52,12 +51,17 @@ function Game() {
                 message: "Guess a letter!"
             }
         ]).then(function(guess) {
+            console.log('.then ...')
             console.log(guess);             // { choice: 'd' }
-            displayWord(wordObject);        // displayWord([{d},{o},{g}])
+            console.log("WordObject: " + JSON.stringify(wordObject));        // console.log([{d},{o},{g}])
 
+
+            var didGuessCorrectly = wordObject.letters.map(item => item.testCharacter(guess.choice));
+            console.log(didGuessCorrectly);
+            // console.log(JSON.stringify(wordObject));
+            displayWord(wordObject);        // displayWord([{d},{o},{g}])
+            makeGuess(wordObject);
         })
-        // self.currentWord.guessLetter(input)  //  returns true/false
-        // if true .. if false ...
     }
 }
 
@@ -81,7 +85,11 @@ function Letter(character) {
     this.discovered = false;
 
     this.testCharacter = function(input) {
-        this.character.test(input);
+        if(input === this.character) {
+            this.discovered = true;
+            return true;
+        }
+        return false;
     }
 
     this.displayLetter = function() {
