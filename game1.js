@@ -15,10 +15,14 @@
 
 var currentWord = new Word("dog");
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // console.log(currentWord);                       // Word { string: 'dog', stringArray: ['d', 'o', 'g'], objectArray = [object object] }
 // console.log(currentWord.string);                // 'dog'
 // console.log(currentWord.stringArray);           // ['d', 'o', 'g']
-// console.log(currentWord.objectArray);           // [ Letter{ charater: 'd' }, Letter{ character: 'o' }, Letter{ character: 'g' } ]
+// console.log(currentWord.objectArray);           // [ {charater: 'd', ...}, {character: 'o', ...}, {character: 'g', ...} ]
+// console.log(currentWord.objectArray.map(item => item.displayLetter()));      // ['_', '_', '_']
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 function Word(str) {
     this.string = str;                                                  // "dog"
@@ -28,5 +32,16 @@ function Word(str) {
 
 function Letter(str) {
     this.character = str;
+    this.discovered = false;
+    this.displayLetter = function() {
+        if(this.discovered === false) {
+            return "_";
+        }
+        else if(this.discovered === true) {
+            return this.character;
+        }
+    }
 }
+
+
 

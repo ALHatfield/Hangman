@@ -10,8 +10,6 @@ const wordlist = [
 
 // ====================================================================================
 
-
-
 // START THE GAME
 Game();
 
@@ -19,68 +17,33 @@ Game();
 function Game() {
     
     console.log("\nGuess the word!");
-    var guessesLeft = 10;
-    var subtractGuessesLeft = (guessesLeft) => { guessesLeft -= 1; }
     var randomWord = wordlist[Math.floor(Math.random() * wordlist.length)];
     console.log('randomWord === ' + randomWord);
     // console.log(typeof(randomWord));
-
     this.currentWord = new Word(randomWord);
-    // console.log('this.currentWord === ' + this.currentWord);
-    // console.log('typeof(this.currentWord) === ' + typeof(this.currentWord));
-    // console.log(this.currentWord.letters);                                           // Array to loop through
-    // console.log(this.currentWord.letters.map(item => typeof(item.character)));       // Checks the typeof of each item.character
-    // console.log(this.currentWord.letters[0].displayLetter());  
-    askForLetter();
-    function askForLetter() {
-        // displayWord();
-        return inquirer.prompt([
-            {
-                type: "input",
-                name: "choice",
-                message: "guess a letter!"
-            }
-        ]).then(function(guess) {
-            console.log(guess);
-            displayWord(guess);
-        })
-    }
-    
 
-    function displayWord(guess) {
-        this.guess = guess;
-        console.log(this.guess.choice);
-        this.word = this.currentWord.letters.map(
-            function(item) {
-                if(item.character === this.guess.choice) {
-                    console.log("You discovered a letter!")
-                    item.discovered = true;
-                    return item.displayLetter();
-                } else {
-                    return item.displayLetter();
-                }            
-            }
-        ).join(" ");
-        console.log(this.word);
-       
+    // console.log('this.currentWord === ' + this.currentWord);
+    // console.log('typeof(this.currentWord) === ' + typeof(this.currentWord));   
+    // console.log(this.currentWord.lettersArrayObject);                                                       // Array to loop through
+    // console.log(this.currentWord.lettersArrayObject.map(itemObject => itemObject.character));               // logs the itemObject.character of each letter  
+    // console.log(this.currentWord.lettersArrayObject.map(itemObject => typeof(itemObject.character)));       // Checks the typeof of each item.character
+    // console.log(this.currentWord.lettersArrayObject[0].displayLetter());                                    // invokes displayLetter() on the first itemObject in the array
+    
+    function displayWord() {
+        var word = this.currentWord.lettersArrayObject.map(itemObject => itemObject.displayLetter()).join(" ");
+        console.log(word);       
     }
-    // // displayWord();
-    // if(item.character === input) {
-    //     console.log("You discovered a letter!")
-    //     item.discovered = true;
-    //     return item.displayLetter();
-    // } else {
-    //     return item.displayLetter();
-    // }
+    displayWord();
 }
 
 // ====================================================================================
 
 
-function Word(arg1) {
-    this.letters = arg1.split('').map(
+function Word(randomWordString) {
+    this.lettersArray = randomWordString.split('');                         // ["d","o","g"]
+    this.lettersArrayObject = this.lettersArray.map(       
         function(arrayItem) {
-            return new Letter(arrayItem);
+            return new Letter(arrayItem);                       // [ {this.character = "d", this.discovered = false},{this.character = "o", this.discovered = false},{this.character = "o", this.discovered = false} ]
         }
     );
     // console.log("this.letters === " + this.letters);    
