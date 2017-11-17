@@ -29,11 +29,11 @@ function Game() {
     // console.log(this.currentWord.lettersArrayObject.map(itemObject => typeof(itemObject.character)));       // Checks the typeof of each item.character
     // console.log(this.currentWord.lettersArrayObject[0].displayLetter());                                    // invokes displayLetter() on the first itemObject in the array
     
-    function displayWord() {
-        var word = this.currentWord.lettersArrayObject.map(itemObject => itemObject.displayLetter()).join(" ");
-        console.log(word);       
-    }
-    displayWord();
+    // function displayWord() {
+    //     var word = this.currentWord.lettersArrayObject.map(itemObject => itemObject.displayLetter()).join(" ");
+    //     console.log(word);       
+    // }
+    // displayWord();
 }
 
 // ====================================================================================
